@@ -1,7 +1,14 @@
 import CardList from '../components/CardList'
 import {fetchData} from '../config/api'
 import {useState, useEffect} from 'react'
-import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+} from 'react-native'
 import {BellIcon} from 'react-native-heroicons/outline'
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline'
 import {FunnelIcon} from 'react-native-heroicons/outline'
@@ -72,24 +79,30 @@ const HomeScreen = ({navigation}) => {
           <Text className="text-black text-lg font-semibold">Recommended</Text>
           <FunnelIcon size={25} color={'#28303F'} />
         </View>
-        {mainData.length > 0 ? (
-          <>
-            {mainData.map((item, index) => (
-              <>
-                <CardList
-                  key={index}
-                  image={item.heroImgUrl}
-                  title={item.name}
-                  raiting={item.raiting}
-                  item={item}
-                  navigation={navigation}
-                />
-              </>
-            ))}
-          </>
-        ) : (
-          <Text>Loading...</Text>
-        )}
+        <ScrollView>
+          {mainData.length > 0 ? (
+            <>
+              {mainData.map((item, index) => (
+                <>
+                  <CardList
+                    key={index}
+                    image={
+                      item?.photo?.images?.medium?.url
+                        ? item?.photo?.images?.medium?.url
+                        : 'https://img.freepik.com/free-photo/a-cupcake-with-a-strawberry-on-top-and-a-strawberry-on-the-top_1340-35087.jpg'
+                    }
+                    title={item.name}
+                    raiting={item.raiting}
+                    item={item}
+                    navigation={navigation}
+                  />
+                </>
+              ))}
+            </>
+          ) : (
+            <Text>Loading...</Text>
+          )}
+        </ScrollView>
       </View>
     </View>
   )
