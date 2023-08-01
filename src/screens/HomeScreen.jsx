@@ -1,12 +1,30 @@
 import CardList from '../components/CardList'
-import {useState} from 'react'
+import {fetchData} from '../config/api'
+import {useState, useEffect} from 'react'
 import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native'
 import {BellIcon} from 'react-native-heroicons/outline'
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline'
+import {FunnelIcon} from 'react-native-heroicons/outline'
 import {BellSlashIcon} from 'react-native-heroicons/solid'
 
 const HomeScreen = ({navigation}) => {
   const [isPressed, setIsPressed] = useState(false)
+  const [mainData, setMainData] = useState([])
+
+  useEffect(() => {
+    fetchData()
+      .then(response => {
+        setMainData(response.data)
+        console.log('mainData', response.data)
+      })
+      .catch(error => {
+        console.log('Error from useEffect', error)
+      })
+  }, [])
+
+  if (mainData === null) {
+    return <Text>Loading...</Text>
+  }
 
   return (
     <View className="flex-1 relative bg-slate-300">
@@ -49,7 +67,30 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {/* Card list */}
-      <CardList />
+      <View className="flex-1 mx-4 mt-5">
+        <View className="flex-row justify-between items-center">
+          <Text className="text-black text-lg font-semibold">Recommended</Text>
+          <FunnelIcon size={25} color={'#28303F'} />
+        </View>
+        {mainData.length > 0 ? (
+          <>
+            {mainData.map((item, index) => (
+              <>
+                <CardList
+                  key={index}
+                  image={item.heroImgUrl}
+                  title={item.name}
+                  raiting={item.raiting}
+                  item={item}
+                  navigation={navigation}
+                />
+              </>
+            ))}
+          </>
+        ) : (
+          <Text>Loading...</Text>
+        )}
+      </View>
     </View>
   )
 }
