@@ -1,3 +1,4 @@
+import CardList from '../components/CardList'
 import {useState} from 'react'
 import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native'
 import {BellIcon} from 'react-native-heroicons/outline'
@@ -27,7 +28,7 @@ const HomeScreen = ({navigation}) => {
         {/* Icon */}
         {isPressed ? (
           <TouchableOpacity onPress={() => setIsPressed(false)}>
-            <BellSlashIcon size={25} color={'black'} />
+            <BellSlashIcon size={25} color={'#28303F'} />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => setIsPressed(true)}>
@@ -46,6 +47,9 @@ const HomeScreen = ({navigation}) => {
           className="bg-white w-full rounded-lg text-lg text-[#B3B4BA] pl-12 font-semibold"
         />
       </View>
+
+      {/* Card list */}
+      <CardList />
     </View>
   )
 }
