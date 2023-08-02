@@ -81,20 +81,16 @@ const HomeScreen = ({navigation}) => {
         <ScrollView contentContainerStyle={{paddingBottom: 150}}>
           <View className="flex-row flex-wrap justify-between items-center ">
             {!isLoading || mainData.length > 0 ? (
-              <>
-                {mainData.data.map((item, index) => (
-                  <>
-                    <CardList
-                      key={item.locationId}
-                      image={item.heroImgUrl}
-                      title={item.name}
-                      rating={item.averageRating}
-                      item={item}
-                      navigation={navigation}
-                    />
-                  </>
-                ))}
-              </>
+              mainData.data.map((item, index) => (
+                <CardList
+                  key={index}
+                  image={item.heroImgUrl}
+                  title={item.name}
+                  rating={item.averageRating}
+                  item={item}
+                  navigation={navigation}
+                />
+              ))
             ) : (
               <Text>Loading...</Text>
             )}

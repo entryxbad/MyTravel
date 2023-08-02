@@ -18,27 +18,27 @@ const CardItem = ({route, navigation}) => {
 
   return (
     <View className="flex-1 relative">
-      <ScrollView className="flex-1">
-        {/* Image section */}
-        <View className="relative">
-          <Image
-            source={{uri: data.params.heroImgUrl}}
-            className="w-full h-72 object-cover rounded-b-3xl"
-          />
+      {/* Image section */}
+      <View className="relative">
+        <Image
+          source={{uri: data.params.heroImgUrl}}
+          className="w-full h-72 object-cover rounded-b-3xl"
+        />
 
-          {/* Buttons section */}
-          <View className="absolute flex-row inset-x-0 top-5 justify-between px-6">
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}
-              className="bg-white rounded-full p-3">
-              <ChevronLeftIcon size={25} color={'black'} />
-            </TouchableOpacity>
+        {/* Buttons section */}
+        <View className="absolute flex-row inset-x-0 top-5 justify-between px-6">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            className="bg-white rounded-full p-3">
+            <ChevronLeftIcon size={25} color={'black'} />
+          </TouchableOpacity>
 
-            <TouchableOpacity className="bg-white rounded-full p-3">
-              <HeartIcon size={25} color={'black'} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity className="bg-white rounded-full p-3">
+            <HeartIcon size={25} color={'black'} />
+          </TouchableOpacity>
+        </View>
 
+        <ScrollView>
           {/* Descriptio section */}
           <View className="flex-1 p-3">
             {/* Header description */}
@@ -62,25 +62,25 @@ const CardItem = ({route, navigation}) => {
               <View className="mt-2">
                 {data.params.reviewSnippets.reviewSnippetsList.map(
                   (item, index) => (
-                    <>
-                      <HTML
-                        key={index}
-                        source={{html: item.reviewText}}
-                        contentWidth={windowWidth}
-                      />
-                    </>
+                    <HTML
+                      key={index}
+                      source={{html: item.reviewText}}
+                      contentWidth={windowWidth}
+                    />
                   ),
                 )}
               </View>
-              <TouchableOpacity className="flex-1 items-center bg-[#2894D1] p-8 rounded-3xl mt-5">
+
+              {/* Button */}
+              <TouchableOpacity className="flex-1 items-center bg-[#2894D1] p-7 rounded-3xl mt-5">
                 <Text className="text-white font-bold text-2xl">
                   Find a place to stay
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   )
 }
