@@ -85,7 +85,7 @@ const HomeScreen = ({navigation}) => {
                 {mainData.data.map((item, index) => (
                   <>
                     <CardList
-                      key={index}
+                      key={item.locationId}
                       image={item.heroImgUrl}
                       title={item.name}
                       rating={item.averageRating}
