@@ -72,13 +72,13 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {/* Card list */}
-      <View className="mx-4 mt-5">
+      <View className="mx-4 mt-5 pb-10">
         <View className="flex-row justify-between items-center mb-3">
           <Text className="text-black text-lg font-semibold">Recommended</Text>
           <FunnelIcon size={25} color={'#28303F'} />
         </View>
 
-        <ScrollView>
+        <ScrollView contentContainerStyle={{paddingBottom: 150}}>
           <View className="flex-row flex-wrap justify-between items-center ">
             {!isLoading || mainData.length > 0 ? (
               <>
