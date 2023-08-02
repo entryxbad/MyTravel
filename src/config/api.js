@@ -1,11 +1,11 @@
 const url =
-  'https://travel-advisor.p.rapidapi.com/hotels/list?location_id=293919&adults=1&rooms=1&nights=2&offset=0&currency=USD&order=asc&limit=30&sort=recommended&lang=en_US'
+  'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=304554'
 
 const options = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Key': '797d18dc4bmshbce9903b38ac1e7p19bc3ejsn5d37e735f837',
-    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
+    'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
   },
 }
 

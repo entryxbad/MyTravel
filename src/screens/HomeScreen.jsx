@@ -17,21 +17,19 @@ import {BellSlashIcon} from 'react-native-heroicons/solid'
 const HomeScreen = ({navigation}) => {
   const [isPressed, setIsPressed] = useState(false)
   const [mainData, setMainData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchData()
       .then(response => {
         setMainData(response.data)
+        setIsLoading(false)
         console.log('mainData', response.data)
       })
       .catch(error => {
         console.log('Error from useEffect', error)
       })
   }, [])
-
-  if (mainData === null) {
-    return <Text>Loading...</Text>
-  }
 
   return (
     <View className="flex-1 relative bg-slate-300">
@@ -74,34 +72,33 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {/* Card list */}
-      <View className="flex-1 mx-4 mt-5">
-        <View className="flex-row justify-between items-center">
+      <View className="mx-4 mt-5">
+        <View className="flex-row justify-between items-center mb-3">
           <Text className="text-black text-lg font-semibold">Recommended</Text>
           <FunnelIcon size={25} color={'#28303F'} />
         </View>
+
         <ScrollView>
-          {mainData.length > 0 ? (
-            <>
-              {mainData.map((item, index) => (
-                <>
-                  <CardList
-                    key={index}
-                    image={
-                      item?.photo?.images?.medium?.url
-                        ? item?.photo?.images?.medium?.url
-                        : 'https://img.freepik.com/free-photo/a-cupcake-with-a-strawberry-on-top-and-a-strawberry-on-the-top_1340-35087.jpg'
-                    }
-                    title={item.name}
-                    raiting={item.raiting}
-                    item={item}
-                    navigation={navigation}
-                  />
-                </>
-              ))}
-            </>
-          ) : (
-            <Text>Loading...</Text>
-          )}
+          <View className="flex-row flex-wrap justify-between items-center ">
+            {!isLoading || mainData.length > 0 ? (
+              <>
+                {mainData.data.map((item, index) => (
+                  <>
+                    <CardList
+                      key={index}
+                      image={item.heroImgUrl}
+                      title={item.name}
+                      rating={item.averageRating}
+                      item={item}
+                      navigation={navigation}
+                    />
+                  </>
+                ))}
+              </>
+            ) : (
+              <Text>Loading...</Text>
+            )}
+          </View>
         </ScrollView>
       </View>
     </View>

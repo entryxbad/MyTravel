@@ -1,7 +1,7 @@
 import React from 'react'
-import {View, Image} from 'react-native'
+import {View, Image, Text} from 'react-native'
 
-const CardItem = () => {
+const CardItem = ({item}) => {
   return (
     <View>
       <View>{/* <Image /> */}</View>

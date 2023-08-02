@@ -1,3 +1,4 @@
+import CardItem from '../components/CardItem'
 import HomeScreen from '../screens/HomeScreen'
 import StartScreen from '../screens/StartScreen'
 import {NavigationContainer} from '@react-navigation/native'
@@ -13,6 +14,7 @@ const AppNavigation = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Card" component={CardItem} />
       </Stack.Navigator>
     </NavigationContainer>
   )
